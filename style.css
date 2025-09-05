@@ -1,0 +1,246 @@
+/* ===== VARIABLES CSS ===== */
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #1e40af;
+    --success-color: #10b981;
+    --error-color: #ef4444;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --bg-light: #f9fafb;
+    --white: #ffffff;
+    --border-radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+/* ===== RESET ET BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    line-height: 1.6;
+    color: var(--text-dark);
+    background: linear-gradient(135deg, var(--bg-light) 0%, #e0e7ff 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ===== LAYOUT PRINCIPAL ===== */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    padding: 2rem;
+}
+
+/* ===== HEADER ===== */
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: var(--text-light);
+    font-size: 1.1rem;
+}
+
+/* ===== SECTION CITATION ===== */
+.citation-section {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+/* États d'affichage */
+.hidden {
+    display: none !important;
+}
+
+/* ===== LOADING ===== */
+.loading {
+    text-align: center;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--bg-light);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* ===== CITATION ===== */
+.citation-container {
+    text-align: center;
+    width: 100%;
+}
+
+.citation-text {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    position: relative;
+}
+
+.citation-text::before {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: absolute;
+    left: -2rem;
+    top: -0.5rem;
+}
+
+.citation-text::after {
+    content: '"';
+    font-size: 3rem;
+    color: var(--primary-color);
+    position: absolute;
+    right: -2rem;
+    bottom: -1rem;
+}
+
+.citation-author {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    font-weight: 500;
+}
+
+.citation-author::before {
+    content: "— ";
+}
+
+/* ===== ERREUR ===== */
+.error-container {
+    text-align: center;
+    padding: 2rem;
+    background: #fef2f2;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--error-color);
+}
+
+.error-message {
+    color: var(--error-color);
+    font-weight: 500;
+}
+
+/* ===== ACTIONS ===== */
+.actions {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.btn-nouvelle {
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: var(--shadow);
+}
+
+.btn-nouvelle:hover:not(:disabled) {
+    background: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.btn-nouvelle:active {
+    transform: translateY(0);
+}
+
+.btn-nouvelle:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    text-align: center;
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+    color: var(--text-light);
+}
+
+footer a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .citation-text {
+        font-size: 1.2rem;
+    }
+    
+    .citation-text::before,
+    .citation-text::after {
+        font-size: 2rem;
+    }
+    
+    .citation-text::before {
+        left: -1rem;
+    }
+    
+    .citation-text::after {
+        right: -1rem;
+    }
+    
+    .btn-nouvelle {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .citation-text::before,
+    .citation-text::after {
+        display: none;
+    }
+}

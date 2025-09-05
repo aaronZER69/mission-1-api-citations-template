@@ -1,0 +1,68 @@
+// ===== evaluation-template.json =====
+{
+  "etudiant": {
+    "nom": "",
+    "prenom": "",
+    "classe": "BTS2-SIO-SLAM",
+    "date": "",
+    "duree_seance": "60min"
+  },
+  "qcm": {
+    "q1": {
+      "question": "Quelle méthode JavaScript permet de faire un appel API asynchrone ?",
+      "reponse": "",
+      "options": ["fetch", "call", "request", "api"],
+      "justification": ""
+    },
+    "q2": {
+      "question": "Que signifie API ?",
+      "reponse": "",
+      "options": ["Application Programming Interface", "Automated Program Interface", "Advanced Programming Interface", "Application Process Interface"],
+      "justification": ""
+    },
+    "q3": {
+      "question": "Quel fichier GitHub configure le déploiement automatique ?",
+      "reponse": "",
+      "options": [".github/workflows/pages.yml", "deploy.yml", "github-pages.json", ".pages"],
+      "justification": ""
+    },
+    "q4": {
+      "question": "Comment gère-t-on une erreur avec fetch() ?",
+      "reponse": "",
+      "options": ["catch", "error", "fail", "exception"],
+      "justification": ""
+    },
+    "q5": {
+      "question": "Quelle balise HTML est sémantiquement correcte pour une citation ?",
+      "reponse": "",
+      "options": ["blockquote", "cite", "quote", "div"],
+      "justification": ""
+    },
+    "q6": {
+      "question": "Que fait git push origin main ?",
+      "reponse": "",
+      "options": ["Envoie les commits locaux vers GitHub", "Récupère les modifications", "Crée une nouvelle branche", "Supprime les fichiers"],
+      "justification": ""
+    },
+    "q7": {
+      "question": "Quel est l'avantage principal de GitHub Classroom ?",
+      "reponse": "",
+      "options": ["Gestion automatisée des assignments et évaluation", "Gratuit pour tous", "Plus rapide que GitHub", "Pas de limite de repository"],
+      "justification": ""
+    },
+    "q8": {
+      "question": "Que retourne l'API quotable.io ?",
+      "reponse": "",
+      "options": ["Un objet JSON avec citation et auteur", "Du texte brut", "Un fichier XML", "Une image"],
+      "justification": ""
+    }
+  },
+  "autoévaluation": {
+    "difficulte_perçue": "",
+    "concepts_clairs": [],
+    "concepts_flous": [],
+    "temps_necessaire": "",
+    "commentaire": ""
+  }
+}
+

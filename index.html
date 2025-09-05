@@ -1,0 +1,57 @@
+### index.html
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur de Citations - [VOTRE_NOM]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <header>
+            <h1>💬 Citations Inspirantes</h1>
+            <p class="subtitle">Découvrez des citations qui inspirent</p>
+        </header>
+        
+        <section class="citation-section">
+            <!-- Zone de chargement -->
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <p>Chargement d'une citation...</p>
+            </div>
+            
+            <!-- Zone citation (cachée au début) -->
+            <div id="citation-container" class="citation-container hidden">
+                <blockquote id="citation-text" class="citation-text">
+                    <!-- La citation apparaîtra ici -->
+                </blockquote>
+                <cite id="citation-author" class="citation-author">
+                    <!-- L'auteur apparaîtra ici -->
+                </cite>
+            </div>
+            
+            <!-- Zone d'erreur (cachée au début) -->
+            <div id="error-container" class="error-container hidden">
+                <p class="error-message">
+                    ❌ Impossible de charger une citation. Vérifiez votre connexion.
+                </p>
+            </div>
+        </section>
+        
+        <section class="actions">
+            <button id="nouvelle-citation" class="btn-nouvelle" disabled>
+                🔄 Nouvelle Citation
+            </button>
+        </section>
+        
+        <footer>
+            <p>Réalisé par <strong>[VOTRE_NOM]</strong> - BTS SIO SLAM</p>
+            <p>API: <a href="https://quotable.io" target="_blank">quotable.io</a></p>
+        </footer>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>
