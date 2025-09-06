@@ -1,4 +1,4 @@
-# 💬 Assignment 1 : Générateur de Citations avec API REST
+# 💬 Mission 1 : Générateur de Citations avec API REST
 
 > **Objectif pédagogique :** Découvrir les APIs REST et JavaScript moderne à travers un projet concret et progressif
 
