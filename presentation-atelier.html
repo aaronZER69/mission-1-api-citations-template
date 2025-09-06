@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Présentation Atelier API Citations</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: system-ui, sans-serif; 
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white; 
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .slide {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+            max-width: 900px;
+            animation: fadeIn 0.5s;
+        }
+        .slide.active { display: block; }
+        
+        h1 { font-size: 3rem; margin-bottom: 1rem; }
+        h2 { font-size: 2rem; margin-bottom: 1rem; color: #ffd700; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #87ceeb; }
+        p, li { font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem; }
+        
+        .box {
+            background: rgba(255,255,255,0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1rem auto;
+            max-width: 700px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .code {
+            background: #1e1e1e;
+            color: #f8f8f2;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: monospace;
+            margin: 1rem auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+        .timeline { display: flex; justify-content: space-between; margin: 2rem 0; }
+        .timeline div { background: rgba(255,255,255,0.15); padding: 1rem; border-radius: 8px; flex: 1; margin: 0 0.5rem; }
+        
+        .nav { 
+            position: fixed; 
+            bottom: 2rem; 
+            left: 50%; 
+            transform: translateX(-50%); 
+            display: flex; 
+            gap: 1rem; 
+        }
+        .nav button {
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .nav button:hover { background: rgba(255,255,255,0.3); }
+        .nav button:disabled { opacity: 0.5; cursor: not-allowed; }
+        
+        .counter { 
+            position: fixed; 
+            top: 2rem; 
+            right: 2rem; 
+            background: rgba(0,0,0,0.3); 
+            padding: 0.5rem 1rem; 
+            border-radius: 15px; 
+        }
+        
+        .progress { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 3px; 
+            background: rgba(255,255,255,0.2); 
+        }
+        .progress-fill { 
+            height: 100%; 
+            background: #ffd700; 
+            width: 0%; 
+            transition: width 0.3s; 
+        }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @media (max-width: 768px) { 
+            h1 { font-size: 2rem; } 
+            .grid { grid-template-columns: 1fr; } 
+            .timeline { flex-direction: column; gap: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress"><div class="progress-fill" id="progress"></div></div>
+    <div class="counter" id="counter">1 / 8</div>
+    
+    <!-- Slide 1: Titre -->
+    <div class="slide active">
+        <h1>🚀 Générateur de Citations</h1>
+        <h2>Maîtriser les APIs REST avec JavaScript</h2>
+        <div class="box">
+            <p>🎯 <strong>Objectif :</strong> Créer une application web qui consomme une API</p>
+            <p>⏱️ <strong>Durée :</strong> 90 minutes</p>
+            <p>🎓 <strong>Public :</strong> BTS SIO SLAM 2ème année</p>
+        </div>
+    </div>
+
+    <!-- Slide 2: Qu'est-ce qu'une API ? -->
+    <div class="slide">
+        <h2>🌐 Qu'est-ce qu'une API ?</h2>
+        <div class="box">
+            <h3>🏪 Analogie du Restaurant</h3>
+            <p><strong>API = Serveur</strong> qui prend vos commandes</p>
+        </div>
+        <div class="grid">
+            <div class="box">
+                <h3>👤 Vous</h3>
+                <p>Demandez une citation</p>
+            </div>
+            <div class="box">
+                <h3>📦 API</h3>
+                <p>Retourne citation + auteur</p>
+            </div>
+        </div>
+        <div class="code">🔗 https://api.quotable.io/random<br>📥 {"content": "...", "author": "..."}</div>
+    </div>
+
+    <!-- Slide 3: Fetch API -->
+    <div class="slide">
+        <h2>🎣 L'API Fetch</h2>
+        <div class="box">
+            <h3>🚀 fetch() = "Aller chercher"</h3>
+            <p>Méthode moderne pour récupérer des données</p>
+        </div>
+        <div class="code">const response = await fetch(url);<br>const data = await response.json();</div>
+        <div class="grid">
+            <div class="box">
+                <h3>✨ Avantages</h3>
+                <p>• Syntaxe simple<br>• Promises natives<br>• Support moderne</p>
+            </div>
+            <div class="box">
+                <h3>🔄 Processus</h3>
+                <p>• Envoyer requête<br>• Attendre réponse<br>• Traiter données</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 4: Async/Await -->
+    <div class="slide">
+        <h2>⏳ Async/Await</h2>
+        <div class="box">
+            <h3>🎭 Le Problème de l'Asynchrone</h3>
+            <p>Internet n'est pas instantané ! Il faut <strong>attendre</strong> les réponses.</p>
+        </div>
+        <div class="grid">
+            <div class="box">
+                <h3>❌ Sans await</h3>
+                <div class="code">const response = fetch(url);<br>// Promise pending</div>
+                <p>😵 Confusion</p>
+            </div>
+            <div class="box">
+                <h3>✅ Avec await</h3>
+                <div class="code">const response = await fetch(url);<br>// Response object</div>
+                <p>😊 Lisible</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slide 5: Manipulation DOM -->
+    <div class="slide">
+        <h2>🎨 Manipulation du DOM</h2>
+        <div class="box">
+            <h3>🏗️ DOM = Structure de la Page</h3>
+            <p>JavaScript peut modifier n'importe quel élément HTML</p>
+        </div>
+        <div class="grid">
+            <div class="box">
+                <h3>🎯 Sélection</h3>
+                <div class="code">document.getElementById('citation')</div>
+            </div>
+            <div class="box">
+                <h3>✏️ Modification</h3>
+                <div class="code">element.textContent = data.content</div>
+            </div>
+        </div>
+        <div class="box">
+            <h3>🔐 Sécurité</h3>
+            <p><strong>textContent</strong> évite les injections XSS</p>
+        </div>
+    </div>
+
+    <!-- Slide 6: Outils de Débogage -->
+    <div class="slide">
+        <h2>🔧 Outils de Débogage : F12</h2>
+        <div class="box">
+            <h3>🎯 DevTools = Votre Meilleur Ami</h3>
+        </div>
+        <div class="grid">
+            <div class="box">
+                <h3>💬 Console</h3>
+                <p>• Messages du code<br>• Erreurs JavaScript<br>• Tests rapides</p>
+            </div>
+            <div class="box">
+                <h3>🌐 Network</h3>
+                <p>• Appels API<br>• Codes de statut<br>• Contenu réponses</p>
+            </div>
+        </div>
+        <div class="code">console.log("Debug info");<br>// Apparaît dans la console</div>
+    </div>
+
+    <!-- Slide 7: Planning -->
+    <div class="slide">
+        <h2>📅 Planning de l'Atelier</h2>
+        <div class="timeline">
+            <div><h3>🚀 Phase 1</h3><p><strong>15 min</strong><br>Découverte API</p></div>
+            <div><h3>💻 Phase 2</h3><p><strong>25 min</strong><br>Fetch & DOM</p></div>
+            <div><h3>🛡️ Phase 3</h3><p><strong>20 min</strong><br>Gestion erreurs</p></div>
+            <div><h3>🎮 Phase 4</h3><p><strong>15 min</strong><br>Interactivité</p></div>
+            <div><h3>📊 Phase 5</h3><p><strong>15 min</strong><br>Évaluation</p></div>
+        </div>
+    </div>
+
+    <!-- Slide 8: À vos marques ! -->
+    <div class="slide">
+        <h1>🏁 À vos marques !</h1>
+        <div class="box">
+            <h2>🚀 Prêts pour l'aventure API ?</h2>
+            <p>Vous avez maintenant tous les concepts pour réussir</p>
+        </div>
+        <div class="grid">
+            <div class="box"><h3>📚 Théorie</h3><p>✅ Acquise</p></div>
+            <div class="box"><h3>🎯 Mission</h3><p>✅ Claire</p></div>
+        </div>
+        <div class="box">
+            <h2>💪 Let's Code!</h2>
+        </div>
+    </div>
+
+    <div class="nav">
+        <button id="prev" onclick="changeSlide(-1)">← Précédent</button>
+        <button onclick="toggleFullscreen()">🔍 Plein écran</button>
+        <button id="next" onclick="changeSlide(1)">Suivant →</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        function updateSlide() {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlide].classList.add('active');
+            
+            document.getElementById('counter').textContent = `${currentSlide + 1} / ${totalSlides}`;
+            document.getElementById('progress').style.width = `${((currentSlide + 1) / totalSlides) * 100}%`;
+            
+            document.getElementById('prev').disabled = currentSlide === 0;
+            document.getElementById('next').disabled = currentSlide === totalSlides - 1;
+            
+            if (currentSlide === totalSlides - 1) {
+                document.getElementById('next').textContent = '🏁 Terminé';
+            } else {
+                document.getElementById('next').textContent = 'Suivant →';
+            }
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            if (currentSlide < 0) currentSlide = 0;
+            if (currentSlide >= totalSlides) currentSlide = totalSlides - 1;
+            updateSlide();
+        }
+
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
+
+        // Navigation clavier
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); changeSlide(1); }
+            if (e.key === 'ArrowLeft') { e.preventDefault(); changeSlide(-1); }
+            if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+        });
+
+        updateSlide();
+    </script>
+</body>
+</html>
