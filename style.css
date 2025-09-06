@@ -1,246 +1,740 @@
-/* ===== VARIABLES CSS ===== */
+/* ===== GÉNÉRATEUR DE CITATIONS - STYLES CSS ===== */
+/* 
+ * Projet : Assignment 1 - API REST Citations
+ * Objectif : Apprendre les bonnes pratiques CSS modernes
+ * Concepts : Variables CSS, Grid/Flexbox, Responsive, Animations
+ */
+
+/* ===== VARIABLES CSS (CSS Custom Properties) ===== */
+/* 
+ * 🎯 OBJECTIF : Centraliser les valeurs de design pour faciliter la maintenance
+ * 📚 CONCEPT : Les variables CSS permettent de réutiliser des valeurs dans tout le fichier
+ */
 :root {
-    --primary-color: #3b82f6;
-    --secondary-color: #1e40af;
-    --success-color: #10b981;
-    --error-color: #ef4444;
-    --text-dark: #1f2937;
-    --text-light: #6b7280;
-    --bg-light: #f9fafb;
-    --white: #ffffff;
-    --border-radius: 12px;
-    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --transition: all 0.3s ease;
+  /* Palette de couleurs */
+  --primary-color: #3b82f6;      /* Bleu principal */
+  --primary-dark: #1e40af;       /* Bleu foncé pour hover */
+  --success-color: #10b981;      /* Vert pour les succès */
+  --error-color: #ef4444;        /* Rouge pour les erreurs */
+  --warning-color: #f59e0b;      /* Orange pour les avertissements */
+  
+  /* Couleurs de texte */
+  --text-primary: #1f2937;       /* Texte principal (sombre) */
+  --text-secondary: #6b7280;     /* Texte secondaire (gris) */
+  --text-light: #9ca3af;         /* Texte clair */
+  
+  /* Couleurs de fond */
+  --bg-primary: #ffffff;         /* Fond principal (blanc) */
+  --bg-secondary: #f9fafb;       /* Fond secondaire (gris très clair) */
+  --bg-error: #fef2f2;          /* Fond d'erreur */
+  
+  /* Espacements (système 8px) */
+  --spacing-xs: 0.25rem;         /* 4px */
+  --spacing-sm: 0.5rem;          /* 8px */
+  --spacing-md: 1rem;            /* 16px */
+  --spacing-lg: 1.5rem;          /* 24px */
+  --spacing-xl: 2rem;            /* 32px */
+  --spacing-2xl: 3rem;           /* 48px */
+  
+  /* Rayons de bordure */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+  
+  /* Ombres */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+  
+  /* Typographie */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 
+                       'Helvetica Neue', Arial, sans-serif;
+  --font-size-xs: 0.75rem;       /* 12px */
+  --font-size-sm: 0.875rem;      /* 14px */
+  --font-size-base: 1rem;        /* 16px */
+  --font-size-lg: 1.125rem;      /* 18px */
+  --font-size-xl: 1.25rem;       /* 20px */
+  --font-size-2xl: 1.5rem;       /* 24px */
+  --font-size-3xl: 1.875rem;     /* 30px */
+  --font-size-4xl: 2.25rem;      /* 36px */
 }
 
-/* ===== RESET ET BASE ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ===== RESET CSS MODERNE ===== */
+/* 
+ * 🎯 OBJECTIF : Normaliser les styles par défaut des navigateurs
+ * 📚 CONCEPT : Box-sizing, marges/padding à zéro, ligne de base cohérente
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;          /* Largeur inclut padding et border */
+  margin: 0;                       /* Supprime les marges par défaut */
+  padding: 0;                      /* Supprime les padding par défaut */
+}
+
+/* ===== STYLES DE BASE ===== */
+html {
+  /* Améliore le rendu des polices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Comportement de scroll fluide */
+  scroll-behavior: smooth;
+  
+  /* Taille de police adaptative */
+  font-size: 16px;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-    line-height: 1.6;
-    color: var(--text-dark);
-    background: linear-gradient(135deg, var(--bg-light) 0%, #e0e7ff 100%);
-    min-height: 100vh;
-    padding: 20px;
+  /* Police système pour de meilleures performances */
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base);
+  line-height: 1.6;                /* Hauteur de ligne pour la lisibilité */
+  color: var(--text-primary);
+  
+  /* Dégradé de fond moderne */
+  background: linear-gradient(135deg, 
+    var(--bg-secondary) 0%, 
+    #e0e7ff 50%, 
+    #fef3c7 100%
+  );
+  background-attachment: fixed;     /* Le dégradé reste fixe au scroll */
+  
+  /* Hauteur minimale pour centrer le contenu */
+  min-height: 100vh;
+  
+  /* Padding pour éviter que le contenu touche les bords */
+  padding: var(--spacing-md);
+  
+  /* Flexbox pour centrer le contenu principal */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ===== LAYOUT PRINCIPAL ===== */
+/* 
+ * 🎯 OBJECTIF : Conteneur principal centré et responsive
+ * 📚 CONCEPT : Max-width, centrage automatique, ombres modernes
+ */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    background: var(--white);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow);
-    padding: 2rem;
+  width: 100%;
+  max-width: 800px;               /* Largeur maximale pour la lisibilité */
+  background: var(--bg-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-xl);
+  padding: var(--spacing-2xl);
+  
+  /* Animation d'apparition au chargement */
+  animation: slideInUp var(--transition-slow) ease-out;
 }
 
 /* ===== HEADER ===== */
 header {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
 }
 
 h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
-    margin-bottom: 0.5rem;
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+  
+  /* Effet de dégradé sur le texte */
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* Animation subtile */
+  animation: fadeInDown var(--transition-slow) ease-out 0.2s both;
 }
 
 .subtitle {
-    color: var(--text-light);
-    font-size: 1.1rem;
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: 400;
+  animation: fadeInDown var(--transition-slow) ease-out 0.4s both;
 }
 
 /* ===== SECTION CITATION ===== */
+/* 
+ * 🎯 OBJECTIF : Zone d'affichage adaptative pour différents états
+ * 📚 CONCEPT : Flexbox pour le centrage, hauteur minimale, positions relatives
+ */
 .citation-section {
-    min-height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 2rem;
-    position: relative;
+  min-height: 250px;              /* Hauteur minimale pour éviter les sautillements */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-2xl);
+  position: relative;
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.5);  /* Fond semi-transparent */
+  padding: var(--spacing-xl);
 }
 
-/* États d'affichage */
+/* ===== ÉTATS D'AFFICHAGE ===== */
+/* 
+ * 🎯 OBJECTIF : Contrôler la visibilité des différents états
+ * 📚 CONCEPT : Classes utilitaires pour show/hide avec animations
+ */
 .hidden {
-    display: none !important;
+  display: none !important;
 }
 
-/* ===== LOADING ===== */
+.visible {
+  display: block;
+  animation: fadeIn var(--transition-normal) ease-out;
+}
+
+/* ===== ÉTAT DE CHARGEMENT ===== */
+/* 
+ * 🎯 OBJECTIF : Feedback visuel pendant les appels API
+ * 📚 CONCEPT : Animations CSS, spinners, états de loading
+ */
 .loading {
-    text-align: center;
+  text-align: center;
+  width: 100%;
 }
 
 .spinner {
-    width: 40px;
-    height: 40px;
-    border: 4px solid var(--bg-light);
-    border-top: 4px solid var(--primary-color);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 1rem;
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--bg-secondary);
+  border-top: 4px solid var(--primary-color);
+  border-radius: var(--radius-full);
+  margin: 0 auto var(--spacing-md);
+  
+  /* Animation de rotation infinie */
+  animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+.loading p {
+  color: var(--text-secondary);
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  animation: pulse 2s ease-in-out infinite;
 }
 
-/* ===== CITATION ===== */
+/* ===== AFFICHAGE DES CITATIONS ===== */
+/* 
+ * 🎯 OBJECTIF : Présentation élégante et lisible des citations
+ * 📚 CONCEPT : Typographie responsive, pseudo-éléments, positionnement
+ */
 .citation-container {
-    text-align: center;
-    width: 100%;
+  text-align: center;
+  width: 100%;
+  position: relative;
+  padding: var(--spacing-lg);
 }
 
 .citation-text {
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-    line-height: 1.4;
-    position: relative;
+  font-size: var(--font-size-2xl);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-primary);
+  line-height: 1.4;
+  margin-bottom: var(--spacing-lg);
+  position: relative;
+  
+  /* Espacement pour les guillemets */
+  padding: 0 var(--spacing-lg);
+  
+  /* Animation d'apparition */
+  animation: slideInUp var(--transition-slow) ease-out;
+}
+
+/* Guillemets décoratifs */
+.citation-text::before,
+.citation-text::after {
+  font-family: Georgia, serif;
+  font-size: 4rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  position: absolute;
+  opacity: 0.3;
+  line-height: 1;
 }
 
 .citation-text::before {
-    content: '"';
-    font-size: 3rem;
-    color: var(--primary-color);
-    position: absolute;
-    left: -2rem;
-    top: -0.5rem;
+  content: '"';
+  top: -1rem;
+  left: -0.5rem;
 }
 
 .citation-text::after {
-    content: '"';
-    font-size: 3rem;
-    color: var(--primary-color);
-    position: absolute;
-    right: -2rem;
-    bottom: -1rem;
+  content: '"';
+  bottom: -2rem;
+  right: -0.5rem;
 }
 
 .citation-author {
-    font-size: 1.1rem;
-    color: var(--text-light);
-    font-weight: 500;
+  font-size: var(--font-size-lg);
+  color: var(--text-secondary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  
+  /* Animation retardée */
+  animation: fadeInUp var(--transition-slow) ease-out 0.3s both;
 }
 
 .citation-author::before {
-    content: "— ";
+  content: "— ";
+  color: var(--primary-color);
 }
 
-/* ===== ERREUR ===== */
+/* ===== GESTION DES ERREURS ===== */
+/* 
+ * 🎯 OBJECTIF : Affichage clair et constructif des erreurs
+ * 📚 CONCEPT : Design d'erreur user-friendly, couleurs sémantiques
+ */
 .error-container {
-    text-align: center;
-    padding: 2rem;
-    background: #fef2f2;
-    border-radius: var(--border-radius);
-    border-left: 4px solid var(--error-color);
+  text-align: center;
+  padding: var(--spacing-xl);
+  background: var(--bg-error);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--error-color);
+  width: 100%;
+  
+  /* Animation d'apparition */
+  animation: shake 0.5s ease-in-out, fadeIn var(--transition-normal) ease-out;
 }
 
 .error-message {
-    color: var(--error-color);
-    font-weight: 500;
+  color: var(--error-color);
+  font-weight: 600;
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--spacing-md);
 }
 
-/* ===== ACTIONS ===== */
+.btn-retry {
+  background: var(--error-color);
+  color: white;
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-retry:hover {
+  background: #dc2626;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+/* ===== BOUTONS ET ACTIONS ===== */
+/* 
+ * 🎯 OBJECTIF : Boutons interactifs et accessibles
+ * 📚 CONCEPT : États hover/focus/disabled, transitions, accessibilité
+ */
 .actions {
-    text-align: center;
-    margin-bottom: 2rem;
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
 }
 
 .btn-nouvelle {
-    background: var(--primary-color);
-    color: var(--white);
-    border: none;
-    padding: 1rem 2rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  border: none;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  box-shadow: var(--shadow-md);
+  
+  /* Transitions fluides */
+  transition: all var(--transition-normal);
+  
+  /* Focus pour l'accessibilité */
+  outline: none;
+  position: relative;
+  overflow: hidden;
 }
 
+/* Effet de hover */
 .btn-nouvelle:hover:not(:disabled) {
-    background: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 15px -3px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-xl);
+  background: linear-gradient(135deg, var(--primary-dark), #1e3a8a);
 }
 
+/* Effet de clic */
 .btn-nouvelle:active {
-    transform: translateY(0);
+  transform: translateY(-1px);
+  transition: transform var(--transition-fast);
 }
 
+/* État désactivé */
 .btn-nouvelle:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Focus visible pour l'accessibilité */
+.btn-nouvelle:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.3);
+  outline-offset: 2px;
+}
+
+/* Effet ondulation au clic */
+.btn-nouvelle::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-full);
+  transform: translate(-50%, -50%);
+  transition: width var(--transition-normal), height var(--transition-normal);
+}
+
+.btn-nouvelle:active::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* ===== SECTION BONUS ===== */
+/* 
+ * 🎯 OBJECTIF : Fonctionnalités optionnelles avec design cohérent
+ */
+.bonus-section {
+  display: flex;
+  gap: var(--spacing-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--spacing-xl);
+}
+
+.btn-secondary {
+  background: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-secondary:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
 }
 
 /* ===== FOOTER ===== */
 footer {
-    text-align: center;
-    padding-top: 1rem;
-    border-top: 1px solid #e5e7eb;
-    color: var(--text-light);
+  text-align: center;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid #e5e7eb;
+  color: var(--text-light);
+  font-size: var(--font-size-sm);
+}
+
+footer p {
+  margin-bottom: var(--spacing-xs);
 }
 
 footer a {
-    color: var(--primary-color);
-    text-decoration: none;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color var(--transition-fast);
 }
 
 footer a:hover {
-    text-decoration: underline;
+  color: var(--primary-dark);
+  text-decoration: underline;
 }
 
-/* ===== RESPONSIVE ===== */
+/* ===== UTILITAIRES D'ACCESSIBILITÉ ===== */
+/* 
+ * 🎯 OBJECTIF : Support des lecteurs d'écran et navigation clavier
+ * 📚 CONCEPT : Classes sr-only, focus states, contrastes
+ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== ANIMATIONS CSS ===== */
+/* 
+ * 🎯 OBJECTIF : Animations fluides et performantes
+ * 📚 CONCEPT : Keyframes, transforms, opacité, GPU acceleration
+ */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+  20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+/* ===== DESIGN RESPONSIVE ===== */
+/* 
+ * 🎯 OBJECTIF : Adaptation parfaite sur tous les écrans
+ * 📚 CONCEPT : Mobile-first, breakpoints, unités relatives
+ */
+
+/* Tablettes (768px et moins) */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-    
-    .container {
-        padding: 1.5rem;
-    }
-    
-    h1 {
-        font-size: 2rem;
-    }
-    
-    .citation-text {
-        font-size: 1.2rem;
-    }
-    
-    .citation-text::before,
-    .citation-text::after {
-        font-size: 2rem;
-    }
-    
-    .citation-text::before {
-        left: -1rem;
-    }
-    
-    .citation-text::after {
-        right: -1rem;
-    }
-    
-    .btn-nouvelle {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
-    }
+  :root {
+    --font-size-4xl: 2rem;        /* Titre plus petit */
+    --font-size-2xl: 1.25rem;     /* Citations plus compactes */
+  }
+  
+  body {
+    padding: var(--spacing-sm);
+  }
+  
+  .container {
+    padding: var(--spacing-xl);
+  }
+  
+  h1 {
+    font-size: var(--font-size-4xl);
+  }
+  
+  .citation-text {
+    font-size: var(--font-size-xl);
+    padding: 0 var(--spacing-md);
+  }
+  
+  .citation-text::before,
+  .citation-text::after {
+    font-size: 3rem;
+  }
+  
+  .citation-text::before {
+    left: -0.25rem;
+  }
+  
+  .citation-text::after {
+    right: -0.25rem;
+  }
+  
+  .btn-nouvelle {
+    width: 100%;
+    padding: var(--spacing-md);
+  }
+  
+  .bonus-section {
+    flex-direction: column;
+  }
+  
+  .btn-secondary {
+    width: 100%;
+    padding: var(--spacing-md);
+  }
 }
 
+/* Smartphones (480px et moins) */
 @media (max-width: 480px) {
-    .citation-text::before,
-    .citation-text::after {
-        display: none;
-    }
+  :root {
+    --font-size-4xl: 1.75rem;
+    --font-size-2xl: 1.125rem;
+    --spacing-2xl: 1.5rem;
+  }
+  
+  .container {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-sm);
+  }
+  
+  .citation-section {
+    min-height: 200px;
+    padding: var(--spacing-md);
+  }
+  
+  .citation-text {
+    font-size: var(--font-size-lg);
+  }
+  
+  /* Masquer les guillemets sur très petits écrans */
+  .citation-text::before,
+  .citation-text::after {
+    display: none;
+  }
+  
+  .spinner {
+    width: 40px;
+    height: 40px;
+  }
 }
+
+/* Grands écrans (1200px et plus) */
+@media (min-width: 1200px) {
+  .container {
+    max-width: 900px;
+    padding: 3rem;
+  }
+  
+  .citation-text {
+    font-size: 2rem;
+    line-height: 1.3;
+  }
+  
+  .citation-text::before,
+  .citation-text::after {
+    font-size: 5rem;
+  }
+}
+
+/* ===== PRÉFÉRENCES UTILISATEUR ===== */
+/* 
+ * 🎯 OBJECTIF : Respect des préférences d'accessibilité
+ * 📚 CONCEPT : prefers-reduced-motion, prefers-color-scheme
+ */
+
+/* Réduction des animations si demandée */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  .spinner {
+    animation: none;
+    border: 4px solid var(--primary-color);
+  }
+}
+
+/* Support du mode sombre (optionnel) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1f2937;
+    --bg-secondary: #111827;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+    --text-light: #9ca3af;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #111827 0%, #1f2937 50%, #374151 100%);
+  }
+}
+
+/* ===== ÉTATS D'IMPRESSION ===== */
+/* 
+ * 🎯 OBJECTIF : Optimisation pour l'impression
+ */
+@media print {
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+  
+  .container {
+    box-shadow: none;
+    border: 1px solid #ccc;
+    padding: 20px;
+  }
+  
+  .loading,
+  .actions,
+  .bonus-section,
+  .btn-nouvelle,
+  .btn-secondary,
+  .btn-retry {
+    display: none !important;
+  }
+  
+  .citation-text {
+    font-size: 16pt;
+    color: black;
+  }
+  
+  .citation-author {
+    font-size: 14pt;
+    color: #666;
+  }
+}
+
+/* ===== DEBUG ET DÉVELOPPEMENT ===== */
+/* 
+ * Décommentez pour visualiser les zones pendant le développement
+ */
+/*
+.container * {
+  outline: 1px solid rgba(255, 0, 0, 0.2);
+}
+*/
