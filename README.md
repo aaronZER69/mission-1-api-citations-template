@@ -82,7 +82,13 @@ votre-repo/
 ├── 🚀 .github/workflows/  ← Déploiement GitHub Pages
 │   └── pages.yml
 ├── 📖 README.md           ← Documentation projet
-└── 🙈 .gitignore          ← Fichiers à exclure
+├── 🙈 .gitignore          ← Fichiers à exclure
+└── 🆘 Fichiers d'aide/    ← Ressources pédagogiques
+    ├── instructions_etudiant.md
+    ├── evaluation-form.html
+    ├── presentation-atelier.html
+    ├── debug-guide.html
+    └── script-avec-indices.js
 ```
 
 ## 🎓 Progression Pédagogique Recommandée
@@ -119,6 +125,31 @@ votre-repo/
 // 3. Testez tous les scénarios
 ```
 
+## 🆘 Ressources d'Aide Intégrées
+
+### 📋 Instructions Détaillées
+Consultez `instructions_etudiant.md` pour un guide étape par étape avec :
+- Explications des concepts
+- Exemples de code commentés
+- Checkpoints de validation
+- QCM de vérification des connaissances
+
+### 🔧 Outils de Debug Intégrés
+Le fichier `script-avec-indices.js` propose un système d'aide interactif :
+```javascript
+// Dans la console du navigateur
+aide.fetch()           // Indices pour fetch()
+aide.json()            // Indices pour .json()
+aide.dom()             // Indices pour DOM
+aide.solution('fetch-api') // Solution complète
+testerMonCode()        // Validation automatique
+```
+
+### 🎓 Présentations Pédagogiques
+- `presentation-atelier.html` : Introduction aux concepts (8 slides)
+- `debug-guide.html` : Guide interactif des DevTools F12
+- `evaluation-form.html` : Formulaire d'auto-évaluation complet
+
 ## 📊 Système d'Évaluation
 
 ### 🏗️ Critères Techniques (/15 points)
@@ -130,15 +161,22 @@ votre-repo/
 | **Git Workflow** | 2 pts | Commits pertinents, messages clairs, branches |
 | **GitHub Pages** | 3 pts | Site accessible, déploiement automatique |
 
-### 🧠 QCM de Validation (/5 points)
+### 🧠 QCM de Validation (/21 points)
 - **Niveau Débutant** (3 pts) : Concepts de base API, DOM, Git
 - **Niveau Intermédiaire** (6 pts) : JavaScript asynchrone, sémantique HTML
 - **Niveau Avancé** (12 pts) : Sécurité, bonnes pratiques, outils
 
-### 🌟 Bonus Optionnels (/5 points)
+### 🌟 Bonus Optionnels (/9 points)
 - Fonctionnalités avancées implémentées
 - Qualité exceptionnelle du code
 - Innovation dans l'UX/UI
+
+### 📝 Auto-évaluation Progressive
+Le système intègre une évaluation en continu avec :
+- Progression par étapes
+- Auto-évaluation des concepts maîtrisés
+- Identification des difficultés
+- Réflexion pédagogique structurée
 
 ## ✅ Checklist de Validation
 
@@ -172,11 +210,19 @@ votre-repo/
 3. Vérifiez la lisibilité sur mobile
 ```
 
+### Tests Automatisés (GitHub Actions)
+Le workflow `.github/workflows/classroom.yml` vérifie automatiquement :
+- Présence des fichiers obligatoires
+- Completion du QCM d'évaluation
+- Accessibilité GitHub Pages
+- Validation HTML (bonus)
+- Présence du code JavaScript API
+
 ## 📦 Livrable Final
 
 ### 🔗 URLs à Fournir
-- **Repository GitHub** : `https://github.com/[USERNAME]/assignment-1-api-citations-[USERNAME]`
-- **Site en ligne** : `https://[USERNAME].github.io/assignment-1-api-citations-[USERNAME]/`
+- **Repository GitHub** : `https://github.com/[USERNAME]/mission-1-api-citations-[USERNAME]`
+- **Site en ligne** : `https://[USERNAME].github.io/mission-1-api-citations-[USERNAME]/`
 - **Fichier évaluation** : Complété dans votre repository
 
 ### 📋 Contenu du Repository
@@ -186,18 +232,19 @@ votre-repo/
 ✅ evaluation.json entièrement rempli
 ✅ Commits réguliers avec messages descriptifs
 ✅ GitHub Pages activé et opérationnel
+✅ Fichiers d'aide consultés et utilisés
 ```
 
 ## ⏰ Planning Recommandé
 
-| Activité | Durée | Timing |
-|----------|-------|--------|
-| **Analyse du code fourni** | 10 min | 0-10 min |
-| **Implémentation Étape 1-2** | 25 min | 10-35 min |
-| **Implémentation Étape 3-4** | 20 min | 35-55 min |
-| **Tests et débogage** | 15 min | 55-70 min |
-| **QCM et finalisation** | 10 min | 70-80 min |
-| **Déploiement et vérification** | 10 min | 80-90 min |
+| Activité | Durée | Timing | Ressources |
+|----------|-------|--------|------------|
+| **Présentation concepts** | 10 min | 0-10 min | `presentation-atelier.html` |
+| **Analyse du code fourni** | 10 min | 10-20 min | `instructions_etudiant.md` |
+| **Implémentation Étape 1-2** | 25 min | 20-45 min | `script-avec-indices.js` |
+| **Implémentation Étape 3-4** | 20 min | 45-65 min | `debug-guide.html` |
+| **Tests et débogage** | 15 min | 65-80 min | DevTools F12 |
+| **QCM et finalisation** | 10 min | 80-90 min | `evaluation-form.html` |
 
 **⏱️ Deadline : Fin de séance + 30 minutes maximum**
 
@@ -214,15 +261,25 @@ votre-repo/
 debugCitations();     // État actuel de l'app
 showFavoris();        // Voir les favoris sauvés
 clearFavoris();       // Vider les favoris
+
+// Système d'aide intégré
+aide.fetch();         // Indices pour fetch()
+aide.json();          // Indices pour JSON
+aide.dom();           // Indices pour DOM
+testerMonCode();      // Test automatique
+
+// Debug avancé
+debug.testAPI();      // Test direct API
+debug.checkDOM();     // Vérification éléments
 ```
 
 ### 🚨 Problèmes Courants
-| Problème | Solution |
-|----------|----------|
-| **CORS Error** | L'API quotable.io autorise tous les domaines |
-| **Citation ne s'affiche pas** | Vérifiez `response.ok` et le parsing JSON |
-| **Bouton reste désactivé** | Assurez-vous de réactiver après chaque appel |
-| **GitHub Pages 404** | Vérifiez que `index.html` est à la racine |
+| Problème | Solution | Ressource |
+|----------|----------|-----------|
+| **CORS Error** | L'API quotable.io autorise tous les domaines | `debug-guide.html` |
+| **Citation ne s'affiche pas** | Vérifiez `response.ok` et le parsing JSON | `aide.json()` |
+| **Bouton reste désactivé** | Assurez-vous de réactiver après chaque appel | `script-avec-indices.js` |
+| **GitHub Pages 404** | Vérifiez que `index.html` est à la racine | `instructions_etudiant.md` |
 
 ## 🎉 Pour Aller Plus Loin
 
@@ -240,9 +297,10 @@ clearFavoris();       // Vider les favoris
 
 ---
 
-**🎯 Objectif :** Créer une application web moderne qui consomme une API REST de manière élégante et robuste.
+**🎯 Objectif :** Créer une application web moderne qui consomme une API REST de manière élégante et robuste, avec un accompagnement pédagogique progressif et des outils d'aide intégrés.
 
 **🚀 Bon développement et n'hésitez pas à expérimenter !**
 
 ---
 *Réalisé par l'équipe pédagogique BTS SIO SLAM - Année 2025-26*
+*Version mise à jour avec ressources d'aide intégrées et système d'évaluation progressive*
