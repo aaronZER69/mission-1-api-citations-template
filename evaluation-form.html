@@ -107,6 +107,16 @@
             margin-top: 1rem;
         }
         .checkbox-group { display: grid; gap: 0.5rem; }
+        .outils-multi-col {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .outils-multi-col {
+                grid-template-columns: 1fr;
+            }
+        }
         .checkbox-item { 
             display: flex; 
             align-items: center; 
@@ -370,24 +380,14 @@
             <!-- Section Méta-données -->
             <div class="section">
                 <h2>📋 Informations d'Évaluation</h2>
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Durée de l'évaluation (minutes)</label>
-                        <input type="number" id="duree_evaluation" placeholder="Temps passé en minutes" min="1" max="300">
-                    </div>
-                    <div class="form-group">
-                        <label>Type d'évaluateur</label>
-                        <select id="evaluateur">
-                            <option value="Auto-évaluation étudiant">Auto-évaluation étudiant</option>
-                            <option value="Évaluation formateur">Évaluation formateur</option>
-                            <option value="Évaluation mixte">Évaluation mixte</option>
-                        </select>
-                    </div>
+                <div class="form-group">
+                    <label>Durée de l'évaluation (minutes)</label>
+                    <input type="number" id="duree_evaluation" placeholder="Temps passé en minutes" min="1" max="300">
                 </div>
 
                 <div class="form-group">
                     <label>Outils utilisés</label>
-                    <div class="checkbox-group" id="outils-container"></div>
+                    <div class="checkbox-group outils-multi-col" id="outils-container"></div>
                 </div>
 
                 <div class="form-group">
