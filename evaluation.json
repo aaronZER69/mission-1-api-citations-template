@@ -83,20 +83,7 @@
     }
   },
 
-  "qcm_niveau_avance": {
-    "q7": {
-      "question": "Quel est l'avantage principal de GitHub Classroom pour les projets étudiants ?",
-      "reponse": "",
-      "options": [
-        "Gestion automatisée des assignments et évaluation en masse", 
-        "Hébergement gratuit illimité", 
-        "Vitesse supérieure à GitHub standard", 
-        "Pas de limite de collaborateurs"
-      ],
-      "justification": "",
-      "points": 3,
-      "concept": "Outils pédagogiques"
-    },
+  
     "q8": {
       "question": "Que retourne l'API quotable.io dans sa réponse ?",
       "reponse": "",
