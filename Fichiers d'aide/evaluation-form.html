@@ -338,6 +338,31 @@
         .auto-save-indicator.show {
             opacity: 1;
         }
+        .instructions-box {
+            background: linear-gradient(135deg, #fef3c7, #fbbf24);
+            color: #92400e;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+            border: 2px solid #f59e0b;
+        }
+        .instructions-box h3 {
+            color: #92400e;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+        .instructions-step {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #f59e0b;
+        }
+        .instructions-step h4 {
+            color: #92400e;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
         @media (max-width: 768px) { 
             .form-row { grid-template-columns: 1fr; } 
             .actions { flex-direction: column; align-items: center; }
@@ -376,8 +401,7 @@
                     </span>
                 </h2>
                 <p style="margin-bottom: 1.5rem; color: #6b7280;">
-                    <strong>Instructions :</strong> Sélectionnez la meilleure réponse pour chaque question. 
-                    Justifiez vos choix pour valider votre compréhension.
+                    <strong>Instructions :</strong> Sélectionnez la meilleure réponse pour chaque question.
                 </p>
                 <div id="qcm-container"></div>
             </div>
@@ -577,6 +601,48 @@
                 <div class="json-output" id="json-output">
                     Cliquez sur "Générer JSON" pour voir le résultat de votre évaluation...
                 </div>
+                
+                <!-- Instructions de traitement -->
+                <div class="instructions-box">
+                    <h3>📋 Instructions de Finalisation</h3>
+                    
+                    <div class="instructions-step">
+                        <h4>1. 📊 Générer et Copier le JSON</h4>
+                        <p>• Cliquez sur <strong>"Générer JSON"</strong> pour créer votre fichier d'évaluation</p>
+                        <p>• Cliquez sur <strong>"Copier JSON"</strong> pour le mettre dans votre presse-papiers</p>
+                        <p>• Le JSON contient toutes vos réponses et votre auto-évaluation</p>
+                    </div>
+                    
+                    <div class="instructions-step">
+                        <h4>2. 💾 Sauvegarder dans votre Repository</h4>
+                        <p>• Ouvrez VS Code dans votre projet</p>
+                        <p>• Créez un fichier nommé <strong><code>evaluation.json</code></strong> à la racine</p>
+                        <p>• Collez le contenu JSON copié dans ce fichier</p>
+                        <p>• Sauvegardez le fichier</p>
+                    </div>
+                    
+                    <div class="instructions-step">
+                        <h4>3. 📤 Commit et Push Final</h4>
+                        <p>• Ouvrez le terminal dans VS Code</p>
+                        <p>• Tapez : <code>git add evaluation.json</code></p>
+                        <p>• Tapez : <code>git commit -m "feat: ajout évaluation finale"</code></p>
+                        <p>• Tapez : <code>git push origin main</code></p>
+                    </div>
+                    
+                    <div class="instructions-step">
+                        <h4>4. ✅ Vérification Finale</h4>
+                        <p>• Vérifiez que <strong>evaluation.json</strong> apparaît sur GitHub</p>
+                        <p>• Vérifiez que votre site est accessible sur GitHub Pages</p>
+                        <p>• Testez une dernière fois toutes les fonctionnalités</p>
+                        <p>• <strong>🎉 Mission terminée !</strong></p>
+                    </div>
+                </div>
+                
+                <div class="alert">
+                    <strong>⚠️ Important :</strong> 
+                    Le fichier <code>evaluation.json</code> est obligatoire pour la validation de votre travail. 
+                    Sans ce fichier, votre évaluation ne pourra pas être prise en compte.
+                </div>
             </div>
         </div>
 
@@ -686,7 +752,7 @@
             updateProgress();
         });
 
-        // Génération dynamique du QCM
+        // Génération dynamique du QCM (SANS justifications)
         function generateQCM() {
             const container = document.getElementById('qcm-container');
             let html = '';
@@ -719,9 +785,7 @@
                         </label>`;
                     });
                     
-                    html += `</div>
-                        <textarea id="q${qIndex}_justification" placeholder="💭 Justifiez votre choix (optionnel mais recommandé pour valider votre compréhension)..." style="margin-top: 1rem;" maxlength="300"></textarea>
-                    </div>`;
+                    html += `</div></div>`;
                     qIndex++;
                 });
             });
@@ -990,19 +1054,17 @@
                 }
             };
 
-            // Remplir QCM
+            // Remplir QCM (SANS justifications)
             let qIndex = 1;
             Object.entries(QCM_DATA).forEach(([level, questions]) => {
                 const sectionKey = `qcm_niveau_${level}`;
                 questions.forEach((question, i) => {
                     const selected = document.querySelector(`input[name="q${qIndex}"]:checked`);
-                    const justification = document.getElementById(`q${qIndex}_justification`);
                     
                     data[sectionKey][`q${qIndex}`] = {
                         question: question.q,
                         reponse: selected ? selected.value : '',
                         options: question.options,
-                        justification: justification ? justification.value : '',
                         points: question.pts,
                         concept: getConceptForLevel(level)
                     };
