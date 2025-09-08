@@ -4,7 +4,7 @@
 
 ## 🎯 **Vue d'Ensemble**
 
-Vous allez développer une application qui récupère et affiche des citations inspirantes depuis l'API [quotable.io](https://quotable.io), avec gestion d'erreurs et design responsive.
+Vous allez per une application qui récupère et affiche des citations inspirantes depuis l'API [quotable.io](https://quotable.io), avec gestion d'erreurs et design responsive.
 
 **🎓 Concepts clés :** API REST • fetch() • async/await • Manipulation DOM • Gestion d'erreurs
 
